@@ -82,19 +82,14 @@ let successMessage;
 
 // Initialize DOM elements and event listeners
 function initializeDOM() {
-    console.log('Initializing DOM...');
     languageSelect = document.getElementById('language');
     form = document.getElementById('complaintForm');
     imageInput = document.getElementById('image');
     successMessage = document.getElementById('successMessage');
     
-    console.log('Language select:', languageSelect);
-    console.log('Form:', form);
-    
     // Language change event
     if (languageSelect) {
         languageSelect.addEventListener('change', (e) => {
-            console.log('Language changed to:', e.target.value);
             currentLanguage = e.target.value;
             updateLanguage();
         });
@@ -104,13 +99,10 @@ function initializeDOM() {
     if (form) {
         form.addEventListener('submit', handleFormSubmit);
     }
-    
-    console.log('DOM initialization complete');
 }
 
 // Update UI based on language
 function updateLanguage() {
-    console.log('Updating language to:', currentLanguage);
     const trans = translations[currentLanguage];
     
     if (!trans) {
@@ -138,7 +130,6 @@ function updateLanguage() {
     document.getElementById('helpImage').textContent = trans.helpImage;
     
     document.getElementById('submitBtn').textContent = trans.submitBtn;
-    console.log('Language updated successfully to:', currentLanguage);
 }
 
 // Handle form submission
@@ -279,8 +270,6 @@ function showSuccessMessage() {
 
 // Initialize language on page load
 window.addEventListener('load', () => {
-    console.log('Page loaded, initializing...');
     initializeDOM();
     updateLanguage();
-    console.log('Initialization complete');
 });
