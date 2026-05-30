@@ -74,17 +74,32 @@ const translations = {
 // Current language
 let currentLanguage = 'en';
 
-// DOM Elements
-const languageSelect = document.getElementById('language');
-const form = document.getElementById('complaintForm');
-const imageInput = document.getElementById('image');
-const successMessage = document.getElementById('successMessage');
+// DOM Elements - will be initialized on load
+let languageSelect;
+let form;
+let imageInput;
+let successMessage;
 
-// Language change event
-languageSelect.addEventListener('change', (e) => {
-    currentLanguage = e.target.value;
-    updateLanguage();
-});
+// Initialize DOM elements and event listeners
+function initializeDOM() {
+    languageSelect = document.getElementById('language');
+    form = document.getElementById('complaintForm');
+    imageInput = document.getElementById('image');
+    successMessage = document.getElementById('successMessage');
+    
+    // Language change event
+    if (languageSelect) {
+        languageSelect.addEventListener('change', (e) => {
+            currentLanguage = e.target.value;
+            updateLanguage();
+        });
+    }
+    
+    // Form submission event
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+}
 
 // Update UI based on language
 function updateLanguage() {
@@ -112,8 +127,8 @@ function updateLanguage() {
     document.getElementById('submitBtn').textContent = trans.submitBtn;
 }
 
-// Form submission
-form.addEventListener('submit', async (e) => {
+// Handle form submission
+async function handleFormSubmit(e) {
     e.preventDefault();
     
     // Clear previous errors
@@ -250,5 +265,6 @@ function showSuccessMessage() {
 
 // Initialize language on page load
 window.addEventListener('load', () => {
+    initializeDOM();
     updateLanguage();
 });
