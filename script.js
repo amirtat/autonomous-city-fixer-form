@@ -34,19 +34,22 @@ async function handleFormSubmit(e) {
 
         const response = await fetch(webhookUrl, {
             method: 'POST',
+            mode: 'cors',
             body: formData,
         });
 
+        const responseText = await response.text();
         if (response.ok) {
             showSuccessMessage();
             form.reset();
             submitBtn.textContent = 'Submit Complaint';
         } else {
-            alert('An error occurred. Please try again.');
+            console.error('Webhook error:', response.status, responseText);
+            alert(`An error occurred (${response.status}). Please try again.`);
         }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        console.error('Network error:', error);
+        alert(`A network error occurred: ${error.message}`);
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit Complaint';
