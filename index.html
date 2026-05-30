@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="title">Report a Complaint</h1>
+            <p id="subtitle">Help us improve our city by reporting issues</p>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <label for="language" id="languageLabel">Language:</label>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+
+        <form id="complaintForm">
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="fullName" id="labelFullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                <span class="error" id="errorFullName"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email" id="labelEmail">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                <span class="error" id="errorEmail"></span>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone" id="labelPhone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
+                <span class="error" id="errorPhone"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description" id="labelDescription">Complaint Description</label>
+                <textarea id="description" name="description" rows="5" required placeholder="Please describe the issue in detail..."></textarea>
+                <span class="error" id="errorDescription"></span>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="image" id="labelImage">Attach Image (Optional)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+                <span class="help-text" id="helpImage">Supported formats: JPG, PNG, GIF (Max 5MB)</span>
+                <span class="error" id="errorImage"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitBtn">Submit Complaint</button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <p id="successText">Thank you! Your complaint has been submitted successfully.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
